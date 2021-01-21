@@ -31,18 +31,29 @@ public class Character : MonoBehaviour
             hVelocity = -moveSpeed;
             transform.localScale = new Vector3(-1, 1, 1);
             animator.SetFloat("xVelocity", Mathf.Abs(hVelocity));
-            animator.SetFloat("xVelocity", 0);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             hVelocity = moveSpeed;
             transform.localScale = new Vector3(1, 1, 1);
+            animator.SetFloat("xVelocity", Mathf.Abs(hVelocity));
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             vVelocity = jumpForce;
             animator.SetTrigger("JumpTrigger");
+        }
+
+
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            animator.SetFloat("xVelocity", 0);
+
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            animator.SetFloat("xVelocity", 0);
         }
 
         hVelocity = Mathf.Clamp(rb.velocity.x + hVelocity, -5, 5);
@@ -56,11 +67,14 @@ public class Character : MonoBehaviour
         {
             healthCount -= 10;
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.tag == "Coin")
         {
             coinCount += 1;
-            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }
