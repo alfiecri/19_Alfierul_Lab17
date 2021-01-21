@@ -30,12 +30,15 @@ public class Character : MonoBehaviour
         {
             hVelocity = -moveSpeed;
             transform.localScale = new Vector3(-1, 1, 1);
+
+
             animator.SetFloat("xVelocity", Mathf.Abs(hVelocity));
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             hVelocity = moveSpeed;
             transform.localScale = new Vector3(1, 1, 1);
+
             animator.SetFloat("xVelocity", Mathf.Abs(hVelocity));
         }
 
@@ -49,15 +52,12 @@ public class Character : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             animator.SetFloat("xVelocity", 0);
-
         }
         else if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             animator.SetFloat("xVelocity", 0);
         }
-
         hVelocity = Mathf.Clamp(rb.velocity.x + hVelocity, -5, 5);
-
         rb.velocity = new Vector2(hVelocity, rb.velocity.y + vVelocity);
     }
 
