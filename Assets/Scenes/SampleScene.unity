@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5f7691b4c19984da9cce846992e4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 2
   jumpForce: 5
   healthCount: 100
   coinCount: 0
@@ -1641,7 +1641,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1110969912
 GameObject:
   m_ObjectHideFlags: 0
