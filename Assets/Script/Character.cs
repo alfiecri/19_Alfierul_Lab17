@@ -11,6 +11,8 @@ public class Character : MonoBehaviour
     public int coinCount;
 
     private Rigidbody2D rb;
+    public AudioClip[] audioClipArr;
+    private AudioSource audioSource;
     private Animator animator;
 
     // Start is called before the first frame update
@@ -18,11 +20,14 @@ public class Character : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         float hVelocity = 0;
         float vVelocity = 0;
 
@@ -61,11 +66,13 @@ public class Character : MonoBehaviour
         rb.velocity = new Vector2(hVelocity, rb.velocity.y + vVelocity);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
+        int randomAudio = Random.Range(0, audioClipArr.Length);
         if (collision.gameObject.tag == "Mace")
         {
             healthCount -= 10;
+            audioSource.PlayOneShot(audioClipArr[randomAudio]);
         }
     }
 
